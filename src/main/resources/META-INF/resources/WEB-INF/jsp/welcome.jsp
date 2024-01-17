@@ -5,7 +5,6 @@
     <body>
         <div>Welcome to the page!</div>
         <br>
-        Your name: ${name}
-        Your password: ${password}
+        <div>Your name: ${name}</div>
     </body>
 </HTML>
