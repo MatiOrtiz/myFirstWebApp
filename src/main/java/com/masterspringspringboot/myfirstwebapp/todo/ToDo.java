@@ -55,4 +55,16 @@ public class ToDo {
     public boolean isDone() {
         return done;
     }
+
+    @Override
+    public String toString() {
+        return "ToDo{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", description='" + description + '\'' +
+                ", targetDate=" + targetDate +
+                ", done=" + done +
+                '}';
+    }
+
 }
