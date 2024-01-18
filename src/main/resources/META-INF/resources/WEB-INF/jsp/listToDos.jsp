@@ -18,16 +18,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="todo" items="${toDos}">
+                    <c:forEach var="toDo" items="${toDos}">
                         <tr>
-                            <td>${todo.id}</td>
-                            <td>${todo.description}</td>
-                            <td>${todo.targetDate}</td>
-                            <td>${todo.done}</td>
+                            <td>${toDo.id}</td>
+                            <td>${toDo.description}</td>
+                            <td>${toDo.targetDate}</td>
+                            <td>${toDo.done}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
+            <a href="add-todo" class="btn btn-success">Add ToDo</a>
         </div>
         <script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
         <script src="webjars/jquery/3.6.4/jquery.min.js"></script>
