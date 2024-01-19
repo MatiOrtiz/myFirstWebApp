@@ -2,12 +2,12 @@ package com.masterspringspringboot.myfirstwebapp.todo;
 
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
 public class ToDoService {
-    private static List<ToDo> toDos = new ArrayList<ToDo>();
+    private static List<ToDo> toDos = new LinkedList<>();
     private static int toDosCount= 0;
 
     static {
@@ -23,6 +23,12 @@ public class ToDoService {
     public void addToDo(String username, String description, LocalDate targetDate, boolean done){
         ToDo toDo= new ToDo(++toDosCount, username,description,targetDate,done);
         toDos.add(toDo);
+    }
+
+    public void deleteToDo(int id){
+        for (ToDo toDo: toDos)
+            if(toDo.getId()==id)
+                toDos.remove(toDo);
     }
 
 }
