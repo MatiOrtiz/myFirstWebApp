@@ -1,17 +1,22 @@
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <HTML>
-<head>
-    <link href="webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <title>Add ToDo</title>
-</head>
-<body>
-<div class="container">
-    <h1>Enter details:</h1>
-    <form method="post">
-        Description: <input type="text" name="description">
-        <input type="submit" class="btn btn-success">
-    </form>
-</div>
-<script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-<script src="webjars/jquery/3.6.4/jquery.min.js"></script>
-</body>
+    <head>
+        <link href="webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <title>Add ToDo</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Enter details:</h1>
+            <form:form method="post" modelAttribute="toDo">
+                Description: <form:input type="text" path="description" required="required"/>
+                <form:input type="hidden" path="id"/>
+                <form:input type="hidden" path="done"/>
+                <input type="submit" class="btn btn-success">
+            </form:form>
+        </div>
+        <script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+        <script src="webjars/jquery/3.6.4/jquery.min.js"></script>
+    </body>
 </HTML>

@@ -4,7 +4,8 @@ import java.time.LocalDate;
 
 public class ToDo {
     private int id;
-    private String username, description;
+    private String username;
+    private String description;
     private LocalDate targetDate;
     private boolean done;
 
