@@ -1,7 +1,9 @@
 package com.masterspringspringboot.myfirstwebapp.todo;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -34,7 +36,9 @@ public class ToDoController {
         return "toDo";
     }
     @RequestMapping(value = "add-todo", method= RequestMethod.POST)
-    public String addNewToDoPage(ModelMap modelMap, ToDo toDo){
+    public String addNewToDoPage(ModelMap modelMap, @Valid ToDo toDo, BindingResult resault){
+        if (resault.hasErrors())
+            return "toDo";
         String username= (String) modelMap.get("name");
         toDoService.addToDo(username, toDo.getDescription(), LocalDate.now().plusYears(1), false);
         return "redirect:list-todos";
