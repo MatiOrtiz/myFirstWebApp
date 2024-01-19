@@ -31,4 +31,12 @@ public class ToDoService {
                 toDos.remove(toDo);
     }
 
+    public ToDo findById(int id){
+        ToDo toDoToReturn= null;
+        for (ToDo toDo: toDos)
+            if(toDo.getId()==id)
+                toDoToReturn= toDo;
+        return toDoToReturn;
+    }
+
 }
