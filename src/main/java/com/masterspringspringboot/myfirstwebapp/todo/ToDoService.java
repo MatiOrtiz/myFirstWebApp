@@ -39,4 +39,11 @@ public class ToDoService {
         return toDoToReturn;
     }
 
+    public void updateToDo(ToDo toDo){
+        ToDo toDoAux= new ToDo(toDo.getId(),toDo.getUsername(), toDo.getDescription(),toDo.getTargetDate(),toDo.isDone());
+        try{
+            deleteToDo(toDo.getId());
+            toDos.addLast(toDoAux);}catch(Exception exception){exception.printStackTrace();}
+    }
+
 }

@@ -51,11 +51,20 @@ public class ToDoController {
         return "redirect:list-todos";
     }
 
-    @RequestMapping("update-todo")
+    @RequestMapping(value = "update-todo", method = RequestMethod.GET)
     public String showUpdateToDoPage(@RequestParam int id, ModelMap modelMap){
         ToDo toDo= toDoService.findById(id);
         modelMap.addAttribute("toDo", toDo);
         return "toDo";
+    }
+    @RequestMapping(value="update-todo", method=RequestMethod.POST)
+    public String updateToDo(ModelMap modelMap, @Valid ToDo toDo, BindingResult result){
+        if(result.hasErrors())
+            return "toDo";
+        String username= (String) modelMap.get("name");
+        //toDo.setUsername(username);
+        toDoService.updateToDo(toDo);
+        return "redirect:list-todos";
     }
 
 }
