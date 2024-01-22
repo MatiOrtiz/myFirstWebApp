@@ -1,5 +1,6 @@
 package com.masterspringspringboot.myfirstwebapp.todo;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -39,11 +40,9 @@ public class ToDoService {
         return toDoToReturn;
     }
 
-    public void updateToDo(ToDo toDo){
-        ToDo toDoAux= new ToDo(toDo.getId(),toDo.getUsername(), toDo.getDescription(),toDo.getTargetDate(),toDo.isDone());
-        try{
-            deleteToDo(toDo.getId());
-            toDos.addLast(toDoAux);}catch(Exception exception){exception.printStackTrace();}
+    public void updateToDo(@Valid ToDo toDo){
+        deleteToDo(toDo.getId());
+        toDos.add(toDo);
     }
 
 }

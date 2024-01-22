@@ -59,10 +59,11 @@ public class ToDoController {
     }
     @RequestMapping(value="update-todo", method=RequestMethod.POST)
     public String updateToDo(ModelMap modelMap, @Valid ToDo toDo, BindingResult result){
-        if(result.hasErrors())
+        if(result.hasErrors()) {
             return "toDo";
+        }
         String username= (String) modelMap.get("name");
-        //toDo.setUsername(username);
+        toDo.setUsername(username);
         toDoService.updateToDo(toDo);
         return "redirect:list-todos";
     }
