@@ -41,7 +41,7 @@ public class ToDoController {
         if (resault.hasErrors())
             return "toDo";
         String username= (String) modelMap.get("name");
-        toDoService.addToDo(username, toDo.getDescription(), LocalDate.now().plusYears(1), false);
+        toDoService.addToDo(username, toDo.getDescription(), toDo.getTargetDate(), false);
         return "redirect:list-todos";
     }
 
