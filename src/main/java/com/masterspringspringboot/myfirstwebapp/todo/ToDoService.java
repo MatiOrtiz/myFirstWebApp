@@ -27,9 +27,9 @@ public class ToDoService {
     }
 
     public void deleteToDo(int id){
-        for (ToDo toDo: toDos)
-            if(toDo.getId()==id)
-                toDos.remove(toDo);
+        for (int i=1; i<=toDosCount; i++)
+            if(i==id)
+                toDos.remove(findById(i));
     }
 
     public ToDo findById(int id){
