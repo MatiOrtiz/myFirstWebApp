@@ -18,7 +18,11 @@ public class ToDoService {
     }
 
     public static List<ToDo> findByUsername(String username) {
-        return toDos;
+        List<ToDo> toDosList= new LinkedList<ToDo>();
+        for (ToDo toDo: toDos)
+            if(toDo.getUsername()==username)
+                toDosList.add(toDo);
+        return toDosList;
     }
 
     public void addToDo(String username, String description, LocalDate targetDate, boolean done){
