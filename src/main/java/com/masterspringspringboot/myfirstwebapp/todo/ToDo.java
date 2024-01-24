@@ -1,10 +1,15 @@
 package com.masterspringspringboot.myfirstwebapp.todo;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
 public class ToDo {
+
+    @Id
+    @GeneratedValue
     private int id;
     private String username;
     @Size(min=5,message="Enter at least 5 characters")
@@ -13,12 +18,15 @@ public class ToDo {
     private boolean done;
 
     public ToDo(int id, String username, String description, LocalDate targetDate, boolean done) {
+        super();
         this.id= id;
         this.username= username;
         this.description= description;
         this.targetDate= targetDate;
         this.done= done;
     }
+
+    public ToDo(){}
 
     public void setId(int id) {
         this.id = id;
