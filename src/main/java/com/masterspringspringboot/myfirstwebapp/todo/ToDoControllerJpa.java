@@ -14,20 +14,21 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.time.LocalDate;
 import java.util.List;
 
-//@Controller
+@Controller
 @SessionAttributes("name")
-public class ToDoController {
+public class ToDoControllerJpa {
 
-    private ToDoService toDoService;
+    private ToDoRepository toDoRepository;
 
-    public ToDoController(ToDoService toDoService) {
-        this.toDoService = toDoService;
+
+    public ToDoControllerJpa(ToDoService toDoService, ToDoRepository toDoRepository) {
+        this.toDoRepository= toDoRepository;
     }
 
     @RequestMapping("list-todos")
     public String listAllToDos(ModelMap modelMap) {
         String username= getLoggedInUsername(modelMap);
-        List<ToDo> toDos = ToDoService.findByUsername(username);
+        List<ToDo> toDos = toDoRepository.findByUsername(username);
         modelMap.addAttribute("toDos", toDos);
         return "listToDos";
     }
@@ -49,19 +50,20 @@ public class ToDoController {
         if (resault.hasErrors())
             return "toDo";
         String username= getLoggedInUsername(modelMap);
-        toDoService.addToDo(username, toDo.getDescription(), toDo.getTargetDate(), false);
+        toDo.setUsername(username);
+        toDoRepository.save(toDo);
         return "redirect:list-todos";
     }
 
     @RequestMapping("delete-todo")
     public String deleteToDo(@RequestParam int id){
-        toDoService.deleteToDo(id);
+        toDoRepository.deleteById(id);
         return "redirect:list-todos";
     }
 
     @RequestMapping(value = "update-todo", method = RequestMethod.GET)
     public String showUpdateToDoPage(@RequestParam int id, ModelMap modelMap){
-        ToDo toDo= toDoService.findById(id);
+        ToDo toDo= toDoRepository.findById(id).get();
         modelMap.addAttribute("toDo", toDo);
         return "toDo";
     }
@@ -72,7 +74,7 @@ public class ToDoController {
         }
         String username= getLoggedInUsername(modelMap);
         toDo.setUsername(username);
-        toDoService.updateToDo(toDo);
+        toDoRepository.save(toDo);
         return "redirect:list-todos";
     }
 
